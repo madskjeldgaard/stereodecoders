@@ -18,6 +18,16 @@ Open up SuperCollider and evaluate the following line of code:
 (
 ~order = ~order ? 3;
 StereoDecoderUHJ.new(hoaOrder: ~order);
+
+// Alternative method:
+/*
+StereoDecoderVirtualMics.new(
+	hoaOrder: ~order,
+	angle: 130,
+	pattern: 0.5 // 0 = omni, 0.5 = cardio, (3-sqrt(3))/2 = super-cardio, 0.75 = Hyper cardio, 1.0 = bi directional
+	);
+*/
+
 )
 
 // Inspect the node tree to see that it is in fact in action:
