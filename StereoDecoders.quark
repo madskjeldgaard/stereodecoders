@@ -1,5 +1,6 @@
 (
   name: "StereoDecoders",
+  path: "StereoDecoders",
   summary: "Stereo decoder for high order ambisonics set up as persistent main fx",
   version: "0.001",
   schelp: "StereoDecoderUHJ.schelp",
