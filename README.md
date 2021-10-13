@@ -4,7 +4,7 @@ This repository contains easy to use stereo decoders for high order ambisonics u
 
 This quark depends on the ambisonic toolkit and requires a full installation of it. See [these instructions](https://github.com/ambisonictoolkit/atk-sc3#installing) for more information. 
 
-It also depends on [persistentmainfx]("https://github.com/madskjeldgaard/persistentmainfx") which is installed automatically by the quark system.
+It also depends on [persistentmainfx](https://github.com/madskjeldgaard/persistentmainfx) which is installed automatically by the quark system.
 
 ## Installation
 
