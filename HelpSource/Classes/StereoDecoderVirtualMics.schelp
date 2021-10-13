@@ -1,0 +1,69 @@
+TITLE:: StereoDecoderVirtualMics
+summary:: Stereo decoder for high order ambisonics using virtual microphones
+categories:: Extensions
+related:: Classes/Quarks
+
+DESCRIPTION::
+Stereo decoder for high order ambisonics using the Ambisonic toolkit (see LINK::Tutorials/ABCs-of-the-ATK::). Once initialized it will set up a "persistent" decoder at the main output of SuperCollider, allowing you to work with ambisonics without worrying about initializing a decoder at the place at the right time.
+
+This decoder expects a high order ambisonics signal and will decode it to stereo using the virtal microhpone method described here: LINK::Guides/HOA-Stereo-Decoding::.
+
+When the user hard stops SuperCollider using cmd-period or ctrl-period, the synth is respawned automatically.
+
+CLASSMETHODS::
+
+METHOD:: new
+
+ARGUMENT:: hoaOrder
+The order of the input high order ambisonics signal.
+
+ARGUMENT:: addAfter
+Add this synth after this node. Defaults to 1 which is the default group.
+
+ARGUMENT::angle
+Microphone angle. See LINK::Classes/FoaDecoderMatrix#*newStereo:: for more information.
+
+ARGUMENT::pattern
+Microphone pattern. See LINK::Classes/FoaDecoderMatrix#*newStereo:: for more information.
+
+returns:: a StereoDecoderVirtualMics
+
+EXAMPLES::
+
+code::
+
+// Setup decoder
+(
+~order = ~order ? 3;
+StereoDecoderVirtualMics.new(
+	hoaOrder: ~order,
+	angle: 130,
+	pattern: 0.5 // 0 = omni, 0.5 = cardio, (3-sqrt(3))/2 = super-cardio, 0.75 = Hyper cardio, 1.0 = bi directional
+	);
+)
+
+// Inspect the node tree to see that it is in fact in action:
+s.plotTree
+
+// Play some high order ambisonics sound
+(
+// White Noise going round
+Ndef(\hoa_testorientation, {|amp=0.125, freq=100, rotFreq=1, ele=0|
+	// var sig = LFTri.ar(freq)*amp;
+	var sig = WhiteNoise.ar(amp);
+	var azi = LFSaw.kr(rotFreq, mul: pi);
+
+	sig = HoaEncodeDirection.ar(
+		sig,
+		azi,
+		ele,
+		AtkHoa.refRadius,
+		~order
+	);
+
+}).play
+)
+
+// Bypass the decoder to output raw ambisonics
+StereoDecoderUHJ.set(\bypass, 1);
+::

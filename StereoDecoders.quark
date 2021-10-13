@@ -1,0 +1,11 @@
+(
+  name: "StereoDecoders",
+  summary: "Stereo decoder for high order ambisonics set up as persistent main fx",
+  version: "0.001",
+  schelp: "StereoDecoderUHJ.schelp",
+  dependencies: ["atk-sc3", "https://github.com/madskjeldgaard/persistentmainfx"],
+  license: "GNU GPL v3.0",
+  copyright: "madskjeldgaard",
+  ext_dependency: nil,
+  url: "https://github.com/madskjeldgaard/stereodecoders"
+)
