@@ -43,7 +43,7 @@ StereoDecoderUHJ : PersistentMainFX {
       );
 
       // Pad output with silence after the stereo channels
-      stereo = stereo ++ Silent.ar().dup(numChans-2);
+      stereo = stereo ++ Silent.ar().dup(order.asHoaOrder.size-2);
 
       sig = Select.ar(which: bypass,  array: [stereo, hoaIn]);
 
